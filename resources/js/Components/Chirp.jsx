@@ -75,6 +75,13 @@ export default function Chirp({ chirp }) {
                                 >
                                     Edit
                                 </button>
+                                <Dropdown.Link
+                                    as="button"
+                                    href={route("chirps.destroy", chirp.id)}
+                                    method="delete"
+                                >
+                                    Delete
+                                </Dropdown.Link>
                             </Dropdown.Content>
                         </Dropdown>
                     )}
@@ -86,14 +93,25 @@ export default function Chirp({ chirp }) {
                             onChange={(e) => setData("message", e.target.value)}
                             className="mt-4 w-full text-gray-900 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                         ></textarea>
-                        <InputError message={errors.message} className='mt-2'/>
+                        <InputError message={errors.message} className="mt-2" />
                         <div className="space-x-2">
                             <PrimaryButton className="mt-4">Save</PrimaryButton>
-                            <button className="mt-4" onClick={() => { setEditing(false); reset(); clearErrors(); }}>Cancel</button>
+                            <button
+                                className="mt-4"
+                                onClick={() => {
+                                    setEditing(false);
+                                    reset();
+                                    clearErrors();
+                                }}
+                            >
+                                Cancel
+                            </button>
                         </div>
                     </form>
                 ) : (
-                    <p className="mt-4 text-lg text-gray-900">{chirp.message}</p>
+                    <p className="mt-4 text-lg text-gray-900">
+                        {chirp.message}
+                    </p>
                 )}
             </div>
         </div>
